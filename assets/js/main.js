@@ -1,4 +1,6 @@
 $(document).ready(function(){
+	var counter = 0;
+
 	$("#tarea-input").keypress(function(e){
 		var key = e.which;
 		if(key==13){
@@ -9,10 +11,9 @@ $(document).ready(function(){
 				alert("You should add a task");
 			} else{
 				var crearTask = function(taskToAdd) {
-
 				  var nuevoDiv = $('<div class="tarea-padre"></div>');
-				  var nuevoCheckbox = $('<input type="checkbox" id="idtask" class="checkbox">');
-				  var nuevoLabel = $('<label for="idtask"></label>');
+				  var nuevoCheckbox = $('<input type="checkbox" id="idtask-'+counter +' " class="checkbox">');
+				  var nuevoLabel = $('<label for="idtask-'+counter +' "></label>');
 				  var removeButton = $('<a class="waves-effect waves-light btn right remove">Remove</a>');
 
 				  nuevoDiv.append(nuevoCheckbox)
@@ -23,11 +24,12 @@ $(document).ready(function(){
 				} 
 
 
-				//the value of the new task is passed as an argument in the makeNewListItem function; a new list item is returned and stored as the variable of listItemToAdd
 				var listItemToAdd = crearTask(tareaInput);
 				$("#items").append(listItemToAdd);
 				//$("#items").append('<div class="tarea-padre"><input type="checkbox" class="filled-in" id="idtask"/><label for="idtask">'+ tareaInput +'</label><a class="waves-effect waves-light btn right">Remove</a></div>');
 				//return false;
+
+				counter++;
 			}
 
 			//Para remover la tarea de clase .remove
